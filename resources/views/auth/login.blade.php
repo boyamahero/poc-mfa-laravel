@@ -51,6 +51,13 @@
                     {{ __('Log in') }}
                 </x-button>
             </div>
+
+            <!-- Facebook -->
+            <div class="mt-4">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="/auth/facebook/redirect">
+                    {{ __('Sign in with Facebook') }}
+                </a>
+            </div>
         </form>
     </x-auth-card>
 </x-guest-layout>

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\FacebookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+/** Facebook OAuth routes */
+Route::get('/auth/facebook/redirect', [FacebookController::class, 'handleFacebookRedirect'])->name('login');;
+Route::get('/auth/facebook/callback', [FacebookController::class, 'handleFacebookCallback']);
