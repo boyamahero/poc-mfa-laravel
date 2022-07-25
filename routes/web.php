@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\FacebookController;
+use App\Http\Controllers\Auth\KeycloakController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,5 +26,9 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 /** Facebook OAuth routes */
-Route::get('/auth/facebook/redirect', [FacebookController::class, 'handleFacebookRedirect'])->name('login');;
-Route::get('/auth/facebook/callback', [FacebookController::class, 'handleFacebookCallback']);
+// Route::get('/auth/facebook/redirect', [FacebookController::class, 'handleFacebookRedirect'])->name('login.facebook');
+// Route::get('/auth/facebook/callback', [FacebookController::class, 'handleFacebookCallback']);
+
+/** Keycloak OAuth routes */
+Route::get('/auth/keycloak/redirect', [KeycloakController::class, 'handleKeycloakRedirect'])->name('login.keycloak');
+Route::get('/auth/keycloak/callback', [KeycloakController::class, 'handleKeycloakCallback']);

@@ -35,15 +35,27 @@
 
                     <x-slot name="content">
                         <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
+                        @if (Route::has('login.keycloak'))
+                        <form method="POST" action="{{ route('logout.keycloak') }}">
                             @csrf
 
-                            <x-dropdown-link :href="route('logout')"
+                            <x-dropdown-link :href="route('logout.keycloak')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
+                        @else
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-responsive-nav-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </x-responsive-nav-link>
+                        </form>
+                        @endif
                     </x-slot>
                 </x-dropdown>
             </div>
@@ -77,6 +89,17 @@
 
             <div class="mt-3 space-y-1">
                 <!-- Authentication -->
+                @if (Route::has('login.keycloak'))
+                <form method="POST" action="{{ route('logout.keycloak') }}">
+                    @csrf
+
+                    <x-responsive-nav-link :href="route('logout.keycloak')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                    </x-responsive-nav-link>
+                </form>
+                @else
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
@@ -86,6 +109,7 @@
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
                 </form>
+                @endif
             </div>
         </div>
     </div>
